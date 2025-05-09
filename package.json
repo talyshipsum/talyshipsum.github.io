@@ -1,0 +1,32 @@
+{
+  "name": "talysh-azerbaijani-ipsum-generator",
+  "version": "1.1.0",
+  "description": "Generates 'Lorem Ipsum' style text using a mix of Talysh (60%) and Azerbaijani (40%) words, with varied punctuation. Press Enter or click Generate.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "echo \"Open index.html in your browser to run.\"",
+    "lint": "echo \"No linter configured yet.\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/talyshipsum/talyshipsum.github.io.git"
+  },
+  "keywords": [
+    "talysh",
+    "azerbaijani",
+    "ipsum",
+    "lorem ipsum",
+    "generator",
+    "text generator",
+    "placeholder text",
+    "multilingual"
+  ],
+  "author": "Your Name or Alias",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/talyshipsum/talyshipsum.github.io/issues"
+  },
+  "homepage": "https://github.com/talyshipsum/talyshipsum.github.io#readme",
+  "devDependencies": {}
+}
