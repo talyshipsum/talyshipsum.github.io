@@ -89,51 +89,71 @@
     <script>
         var TalyshCuratedText = function () {};
 
+        // Yenilənmiş məlumatlar: İndi sətirlər siyahısıdır və yeni cümlələr əlavə edilib
         TalyshCuratedText.CURATED_SENTENCES_DATA = [
-            { talysh: "Çımı xosə vətən, konəy ki bəy barzə bandon iyən nığılə vişon hestin, çımı dıli ilhom doydə iyən az bəy vey məhəbbət bardedəm.", originalEnglish: "Our beautiful homeland, which has high mountains and wonderful forests, gives inspiration to my heart, and I feel great love for it." },
-            { talysh: "Səvodinə inson be həmə vaxt lozime, bərə ki elm həyotədə ıştə yolə vırəş heste iyən məktəb həminə elmi sə vırəye.", originalEnglish: "It is always necessary to be an educated person, because science has its good place in life, and school is the place for that science." },
-            { talysh: "Beməxə Rəbədəli ıştə das-dimi şüştəni iyən çəy kitob-dəftər hejo notəmiz mandedə, çıko ki, odəmi zəhlə bardə.", originalEnglish: "The untidy Rabadali doesn't wash his hands and face, and his book-notebook always remains unclean, which is why he is annoying." },
-            { talysh: "Tovistonədə həvo vey istin iyən qəşəng bedə, əmma zımıstonədə bərk vo varəşe iyən həmmə vırə sıpi bedə.", originalEnglish: "In summer, the weather is very hot and beautiful, but in winter, heavy snow falls and everywhere becomes white." },
-            { talysh: "Kıtı, konəy ki yolə heyvone, kəyədə miyov kardedə iyən əğılon deş vey pidən holə kardedən.", originalEnglish: "The cat, which is a good animal, meows at home, and children love to play with it very much." },
-            { talysh: "Hərki çok bıhando iyən ıştə dərsxənon omuto, əv həyotədə yolə nəticəon əldə bıkarde bəzne, bərə ki zınəy ğüvvəye.", originalEnglish: "Whoever reads well and learns their lessons can achieve good results in life, because knowledge is power." },
-            { talysh: "Çəmə məktəbi muəllimon bəmə həm tolışə zıvon, həmənən co elmon omutedən, ki əmə savodlı bıbəmon.", originalEnglish: "Our school teachers teach us both the Talysh language and other sciences, so that we become literate." },
-            { talysh: "Pamədor iyən piyoz, konanki bostonoədə perosnedən, mətbəxədə ləzzətinə xorəkon hozı kardeədə istifadə bedən.", originalEnglish: "Tomatoes and onions, which grow in gardens, are used in the kitchen to prepare delicious meals." },
-            { talysh: "Əvəsorədə, vaxto ki təbiət oşedə iyən vılon pərəs bedən, həmmə vırə bənə nığıli bedə iyən insoni dıl şoy bedə.", originalEnglish: "In spring, when nature awakens and flowers bloom, everywhere becomes like a fairy tale and a person's heart becomes joyful." },
-            { talysh: "Xocəli faciəsi, konədə ki vey zolımonə deşmenon çanədə jenon iyən hırdənon kıştışone, çəmə xəlği yadədə hejo bəmandə.", originalEnglish: "The Khojaly tragedy, where very cruel enemies killed many women and children, will always remain in the memory of our people." },
-            { talysh: "Bobo, konəy ki vey sinnıne iyən ağılmande, ıştə nəvəonku co məsləhəton doydə iyən bəvon həyoti yol nişo doydə.", originalEnglish: "The grandfather, who is very old and wise, gives different advice to his grandchildren and shows them the way of life." },
-            { talysh: "Asp, konəy ki vəfodorə heyvone, bə daştonədə surətinə davəstedə iyən çəy soybiro sadoğətinə xidmət kardedə.", originalEnglish: "The horse, which is a loyal animal, runs fast in the fields and serves its owner faithfully." },
-            { talysh: "Lankoni ğələ, konəy ki tolışə məholi ğədimə abidəyonədə qıləyje, Azərboyconi zənginə tarixiku xəbə doydə.", originalEnglish: "The Lankaran fortress, which is one of the ancient monuments of the Talysh region, tells about the rich history of Azerbaijan." },
-            { talysh: "Sanbuə, konəy ki vişə pərəndəye iyən bə daron dimədə jiyedə, bə təbiəti faydə doydə, bərə ki əv zərərverəcə həşəraton hardedə.", originalEnglish: "The woodpecker, which is a forest bird and lives on trees, benefits nature because it eats harmful insects." },
-            { talysh: "Kandımuz, konəy ki vey zəhmətkəşə həşərate, vılonku şirə qırdə kardedə iyən bə insonon faydəlinə anqivin doydə.", originalEnglish: "The bee, which is a very hardworking insect, collects nectar from flowers and gives beneficial honey to people." },
-            { talysh: "Honi ovi, konəy ki bə bandonədə sərin iyən pakə vırəku beşedə, şır-şır sədo kardedə iyən insoni təşnəti sindedə.", originalEnglish: "Spring water, which comes out from cool and clean places in the mountains, murmurs and quenches a person's thirst." },
-            { talysh: "Nun, konəy ki Xıdo bərəkəte, həmişə bəmə süfron səpe bəpe bıbo, iyən əmə bəy hurmət karde bəpe, bərə ki əv həyoti əsase.", originalEnglish: "Bread, which is God's blessing, should always be on our tables, and we must respect it because it is the basis of life." },
-            { talysh: "Hər şoqird bəpe ıştə dərson çok bıhono iyən ıştə muəllimi sıxanon quş bıdo, ta ki əv gələcəxədə ıştə vətəniro faydəlinə inson bıbo.", originalEnglish: "Every student must read their lessons well and listen to their teacher's words, so that in the future they can become a useful person for their homeland." },
-            { talysh: "Əgər tı ıştə yolə duston pidəş iyən bəvon hurmət kardedəş, əvonən bətı həmonə curə cavob bədon iyən şımə dustiyəti həmişə bərk bəbe.", originalEnglish: "If you love your good friends and respect them, they will respond to you in the same way, and your friendship will always be strong." },
-            { talysh: "Tolışə zıvon, konəy ki çəmə moə zıvone, vey ğədimə iyən zəngine, bəroən əmə bəpe bəy qoruyəmon iyən bə omə nəslon rosneymon.", originalEnglish: "The Talysh language, which is our mother tongue, is very ancient and rich, therefore we must protect it and pass it on to future generations." }
+            "Çımı xosə vətən, konəy ki bəy barzə bandon iyən nığılə vişon hestin, çımı dıli ilhom doydə iyən az bəy vey məhəbbət bardedəm.",
+            "Səvodinə inson be həmə vaxt lozime, bərə ki elm həyotədə ıştə yolə vırəş heste iyən məktəb həminə elmi sə vırəye.",
+            "Beməxə Rəbədəli ıştə das-dimi şüştəni iyən çəy kitob-dəftər hejo notəmiz mandedə, çıko ki, odəmi zəhlə bardə.",
+            "Tovistonədə həvo vey istin iyən qəşəng bedə, əmma zımıstonədə bərk vo varəşe iyən həmmə vırə sıpi bedə.",
+            "Kıtı, konəy ki yolə heyvone, kəyədə miyov kardedə iyən əğılon deş vey pidən holə kardedən.",
+            "Hərki çok bıhando iyən ıştə dərsxənon omuto, əv həyotədə yolə nəticəon əldə bıkarde bəzne, bərə ki zınəy ğüvvəye.",
+            "Çəmə məktəbi muəllimon bəmə həm tolışə zıvon, həmənən co elmon omutedən, ki əmə savodlı bıbəmon.",
+            "Pamədor iyən piyoz, konanki bostonoədə perosnedən, mətbəxədə ləzzətinə xorəkon hozı kardeədə istifadə bedən.",
+            "Əvəsorədə, vaxto ki təbiət oşedə iyən vılon pərəs bedən, həmmə vırə bənə nığıli bedə iyən insoni dıl şoy bedə.",
+            "Xocəli faciəsi, konədə ki vey zolımonə deşmenon çanədə jenon iyən hırdənon kıştışone, çəmə xəlği yadədə hejo bəmandə.",
+            "Bobo, konəy ki vey sinnıne iyən ağılmande, ıştə nəvəonku co məsləhəton doydə iyən bəvon həyoti yol nişo doydə.",
+            "Asp, konəy ki vəfodorə heyvone, bə daştonədə surətinə davəstedə iyən çəy soybiro sadoğətinə xidmət kardedə.",
+            "Lankoni ğələ, konəy ki tolışə məholi ğədimə abidəyonədə qıləyje, Azərboyconi zənginə tarixiku xəbə doydə.",
+            "Sanbuə, konəy ki vişə pərəndəye iyən bə daron dimədə jiyedə, bə təbiəti faydə doydə, bərə ki əv zərərverəcə həşəraton hardedə.",
+            "Kandımuz, konəy ki vey zəhmətkəşə həşərate, vılonku şirə qırdə kardedə iyən bə insonon faydəlinə anqivin doydə.",
+            "Honi ovi, konəy ki bə bandonədə sərin iyən pakə vırəku beşedə, şır-şır sədo kardedə iyən insoni təşnəti sindedə.",
+            "Nun, konəy ki Xıdo bərəkəte, həmişə bəmə süfron səpe bəpe bıbo, iyən əmə bəy hurmət karde bəpe, bərə ki əv həyoti əsase.",
+            "Hər şoqird bəpe ıştə dərson çok bıhono iyən ıştə muəllimi sıxanon quş bıdo, ta ki əv gələcəxədə ıştə vətəniro faydəlinə inson bıbo.",
+            "Əgər tı ıştə yolə duston pidəş iyən bəvon hurmət kardedəş, əvonən bətı həmonə curə cavob bədon iyən şımə dustiyəti həmişə bərk bəbe.",
+            "Tolışə zıvon, konəy ki çəmə moə zıvone, vey ğədimə iyən zəngine, bəroən əmə bəpe bəy qoruyəmon iyən bə omə nəslon rosneymon.",
+            "Bə Talışə zəminədə, har ruj sıftə bə xərəso vangi peşo bedə.",
+            "Həvo təmyiz iyən sərin bedə, vılon çı şəbnəmi hojə kardedən ıştəni bə həyot.",
+            "Ofdab çı kuon səonişinə yavaş-yavaş bə jor omeydə, ıştə zərinə şolon pardedə həmmə vırə.",
+            "Çımon iyən quşon sədo bə həvo pılo bedə, bə insani dılı şad kardedə.",
+            "Odamon ıştə koon dimədə şedən: kiməsə zəmində kardedə, kiməsə mol-davari dimədə bedə, kiməsəən ıştə dukonədə sənətkarəti kardedə.",
+            "Hırdənon de kitob-dəftər دستədə bə məktəb tələsedən, bəvonə gülüş iyən sədo bə kuçəon vel bedə.",
+            "Ustonə kişiyonən ıştə sənətiku məşğulin, hərə bəyəndə çı ıştə halal zəhməti nun hardedə, Xıdo bərəkəti tələb kardedə.",
+            "Tovistonədə, çəmə diyar vey gözəl bedə.",
+            "Bağonədə meyvon pəsin bedən, zəminonədə qılə rəngbərəng bedə.",
+            "Odamon bə havar komək kardedən, ıştə məhsulon cəm kardedən.",
+            "Zımıstonədəən, həmmə vırə sıpi poşo bedə, amma kəon dılədə həmişə isti sohbaton iyən mehribaniyəti bedə.",
+            "Nunə tənuon həmişə qızğın bedə, bəyku omə ətr bə odəmi cani sinqedə.",
+            "Axşam vaxti, həmmə bə kəolonədə cəm bedə.",
+            "Oiləon çı samovari dıvrədə niştedən, çoy hardedən iyən rujədə bıə hadisəonku sohbat kardedən.",
+            "Yolə nənəon iyən boboon keçmişə nəğılon iyən hikmətinə qəsson nəğıl kardedən, bə hırdənon əxlaq iyən yol-rəsm ojardedən.",
+            "Əvon həmənə şınəxtəşone ki, odəm bəpe həmişə həlol bıbo, bə yolon hurmət bıko iyən bə zəifon əl do.",
+            "Jıqo jimon bə çəmə diyonədə davom kardedə.",
+            "Ama dunya dəyiş bedə, təzə şeyon omeydən, təzə fikiron peydo bedən.",
+            "Vəlij zaney bəpe ki, çəmə yoləonku bəmə mandə miras – çəmə zıvon, çəmə fərhəng, çəmə gözəl odətiyon – ən qiymətinə xəzonəye.",
+            "Əvon bəpe qəşəng qoruyəkəmon iyən bə gələcək nəslon bıdəmon, çunki millət ıştə köküstədə bərk bedə.",
+            "Xıdo həmişə çəmə xəlği iyən Vətəni nıgahban bıbo."
         ];
 
         TalyshCuratedText.RANDOM_TALYS_WORDS = [
-            'yolə', 'xosə', 'şirinə', 'barzə', 'təzə', 'ğədimə', 'sərinə', 'pakə', 'sıpi', 'siyə', // adjectives
-            'vey', 'hejo', 'lap', 'çox', // simple adverbs/intensifiers (çox is Azeri but common in mixed speech)
-            'bəli', 'hay', 'əlbəttə', // interjections / affirmations
-            'çəmə', 'bənə', 'əslində' // other useful simple words (əslində also common from Azeri)
+            'yolə', 'xosə', 'şirinə', 'barzə', 'təzə', 'ğədimə', 'sərinə', 'pakə', 'sıpi', 'siyə', 
+            'vey', 'hejo', 'lap', 'çox', 
+            'bəli', 'hay', 'əlbəttə', 
+            'çəmə', 'bənə', 'əslində' 
         ];
 
         TalyshCuratedText.prototype.getRandomElement = function(arr) {
+            // Massiv boşdursa və ya element yoxdursa null qaytarır
             if (!arr || arr.length === 0) return null;
+            // Təsadüfi element qaytarır
             return arr[Math.floor(Math.random() * arr.length)];
         };
 
-        /**
-         * Shuffles the order of words in a sentence string.
-         * @param {string} sentenceStr - The sentence string.
-         * @returns {string} The sentence with words shuffled.
-         */
         TalyshCuratedText.prototype.shuffleSentenceWords = function(sentenceStr) {
+            // Cümləni sözlərə bölür
             let words = sentenceStr.split(' ');
             let punctuation = "";
             
-            // Try to preserve ending punctuation
+            // Son sözdə durğu işarəsini yoxlayır və saxlayır
             if (words.length > 0) {
                 const lastWord = words[words.length - 1];
                 const match = lastWord.match(/([,.!?]+)$/);
@@ -143,109 +163,112 @@
                 }
             }
 
-            // Fisher-Yates shuffle
+            // Fisher-Yates alqoritmi ilə sözləri qarışdırır
             for (let i = words.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [words[i], words[j]] = [words[j], words[i]];
             }
             
+            // Qarışdırılmış sözləri birləşdirir
             let shuffledSentence = words.join(' ');
+            // Durğu işarəsini əlavə edir (əgər varsa)
             if (punctuation && words.length > 0) {
-                 // Find the new last word to attach punctuation, might not be logical.
-                 // For simplicity, just append. A better way would be complex.
-                 shuffledSentence += punctuation;
+                shuffledSentence += punctuation;
             } else if (words.length > 0 && !/[.!?]$/.test(shuffledSentence.trim())) {
-                 // If no original punctuation was preserved but sentence is not empty add a default.
-                 shuffledSentence = shuffledSentence.trim() + ".";
+                // Əgər durğu işarəsi yoxdursa və cümlə boş deyilsə, nöqtə əlavə edir
+                shuffledSentence = shuffledSentence.trim() + ".";
             }
             return shuffledSentence;
         };
 
 
         TalyshCuratedText.prototype.addRandomWordToSentence = function(sentenceStr) {
-            if (Math.random() < 0.3) { // 30% chance to add an extra word
+            // 30% ehtimalla təsadüfi söz əlavə edir
+            if (Math.random() < 0.3) { 
                 const randomWord = this.getRandomElement(TalyshCuratedText.RANDOM_TALYS_WORDS);
-                if (!randomWord) return sentenceStr;
+                if (!randomWord) return sentenceStr; // Əgər təsadüfi söz seçilməzsə, orijinal cümləni qaytarır
 
                 let wordsInSentence = sentenceStr.split(' ');
-                const originalFirstWord = wordsInSentence.length > 0 ? wordsInSentence[0] : "";
                 let punctuation = "";
 
-                // Preserve and remove end punctuation from last word for now
+                // Son sözdəki durğu işarəsini ayırır
                 if (wordsInSentence.length > 0) {
                     const lastWord = wordsInSentence[wordsInSentence.length - 1];
                     const match = lastWord.match(/([,.!?]+)$/);
                     if (match) {
                         punctuation = match[1];
                         wordsInSentence[wordsInSentence.length - 1] = lastWord.substring(0, lastWord.length - punctuation.length);
-                         if(wordsInSentence[wordsInSentence.length - 1] === "") wordsInSentence.pop(); // if word was only punctuation
+                        if(wordsInSentence[wordsInSentence.length - 1] === "") wordsInSentence.pop(); // Əgər söz yalnız durğu işarəsindən ibarət idisə, onu silir
                     }
                 }
                 
-                const placementRoll = Math.random();
+                const placementRoll = Math.random(); // Sözün yerləşdirilmə mövqeyini təyin edir
 
-                if (placementRoll < 0.5 && wordsInSentence.length > 0) { // Add to beginning
+                if (placementRoll < 0.5 && wordsInSentence.length > 0) { 
+                    // Sözü cümlənin əvvəlinə əlavə edir
                     wordsInSentence.unshift(randomWord);
-                } else if (wordsInSentence.length > 2) { // Add before the second to last word (more natural for adverbs)
+                } else if (wordsInSentence.length > 2) { 
+                    // Sözü sondan ikinci sözdən əvvələ əlavə edir
                     wordsInSentence.splice(wordsInSentence.length - 1, 0, randomWord);
-                } else if (wordsInSentence.length > 0) { // Fallback: add before the last word
-                     wordsInSentence.splice(wordsInSentence.length, 0, randomWord); // effectively appends before potential punctuation
-                } else { // Sentence was empty or just punctuation
+                } else if (wordsInSentence.length > 0) { 
+                     // Sözü son sözdən əvvələ əlavə edir
+                    wordsInSentence.splice(wordsInSentence.length, 0, randomWord); 
+                } else { 
+                    // Əgər cümlə boşdursa, sözü əlavə edir
                     wordsInSentence.push(randomWord);
                 }
                 
+                // Sözləri birləşdirərək yekun cümləni yaradır
                 let finalSentence = wordsInSentence.join(' ');
                 if (punctuation) {
-                    finalSentence += punctuation;
+                    finalSentence += punctuation; // Durğu işarəsini əlavə edir
                 } else if (!/[.!?]$/.test(finalSentence.trim()) && finalSentence.trim().length > 0) {
+                    // Əgər durğu işarəsi yoxdursa və cümlə boş deyilsə, nöqtə əlavə edir
                     finalSentence = finalSentence.trim() + ".";
                 }
                 return finalSentence;
             }
-            return sentenceStr;
+            return sentenceStr; // Əgər təsadüfi söz əlavə edilməzsə, orijinal cümləni qaytarır
         };
 
         TalyshCuratedText.prototype.generate = function () {
-            const NUM_SENTENCES_TO_DISPLAY = 8;
+            const NUM_SENTENCES_TO_DISPLAY = 8; // Göstəriləcək cümlələrin sayı
 
             if (TalyshCuratedText.CURATED_SENTENCES_DATA.length === 0) {
-                return "No curated sentences available.";
+                return "Mövcud cümlə yoxdur."; // Sadə mətn qaytarır
             }
 
-            let outputLines = [];
-            // Create a copy of the curated sentences data to shuffle for selection
-            let availableSentencesData = [...TalyshCuratedText.CURATED_SENTENCES_DATA];
+            let outputSentences = [];
+            // Mövcud cümlələrin surətini yaradır (indi sətirlər massividir)
+            let availableSentences = [...TalyshCuratedText.CURATED_SENTENCES_DATA];
 
-            // Shuffle the available sentences data
-            for (let i = availableSentencesData.length - 1; i > 0; i--) {
+            // Mövcud cümlələri qarışdırır
+            for (let i = availableSentences.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
-                [availableSentencesData[i], availableSentencesData[j]] = [availableSentencesData[j], availableSentencesData[i]];
+                [availableSentences[i], availableSentences[j]] = [availableSentences[j], availableSentences[i]];
             }
             
-            // Select the first 8 (or fewer if not enough available)
-            const selectedSentenceObjects = availableSentencesData.slice(0, Math.min(NUM_SENTENCES_TO_DISPLAY, availableSentencesData.length));
+            // İlk N cümləni seçir (və ya kifayət qədər yoxdursa daha az)
+            const selectedSentences = availableSentences.slice(0, Math.min(NUM_SENTENCES_TO_DISPLAY, availableSentences.length));
             
-            // Now, shuffle the order of these 8 selected sentences for display
-            for (let i = selectedSentenceObjects.length - 1; i > 0; i--) {
+            // İndi bu N seçilmiş cümlənin sırasını göstərmək üçün qarışdırır
+            for (let i = selectedSentences.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
-                [selectedSentenceObjects[i], selectedSentenceObjects[j]] = [selectedSentenceObjects[j], selectedSentenceObjects[i]];
+                [selectedSentences[i], selectedSentences[j]] = [selectedSentences[j], selectedSentences[i]];
             }
 
+            selectedSentences.forEach((sentenceStr) => {
+                let talyshSentence = sentenceStr; // sentenceStr artıq Talış cümlə sətiridir
 
-            selectedSentenceObjects.forEach((sentenceObj) => {
-                let talyshSentence = sentenceObj.talysh;
-
-                // 40% chance to shuffle words within the sentence itself
+                // 40% ehtimalla cümlə daxilində sözləri qarışdırır
                 if (Math.random() < 0.4) {
                     talyshSentence = this.shuffleSentenceWords(talyshSentence);
-                    // Add a note for the user if shuffling happened, good for debugging/awareness
-                    // talyshSentence += " (shuffled)"; 
                 }
 
-                // Optionally add an extra random Talysh word (happens after potential internal shuffle)
+                // İstəyə bağlı olaraq əlavə təsadüfi Talış sözü əlavə edir
                 talyshSentence = this.addRandomWordToSentence(talyshSentence); 
 
-                // Ensure first letter is capitalized and ends with punctuation
+                // İlk hərfin böyük olmasını və durğu işarəsi ilə bitməsini təmin edir
                 if (talyshSentence && talyshSentence.trim().length > 0) {
                     talyshSentence = talyshSentence.trim();
                     talyshSentence = talyshSentence.charAt(0).toUpperCase() + talyshSentence.slice(1);
@@ -253,43 +276,42 @@
                         talyshSentence += ".";
                     }
                 }
-                outputLines.push(talyshSentence);
+                outputSentences.push(talyshSentence); // İşlənmiş cümlə sətirini əlavə edir
             });
 
-            if (outputLines.length === 0) {
-                return "Could not select any sentences.";
+            if (outputSentences.length === 0) {
+                return "Heç bir cümlə seçilə bilmədi."; // Sadə mətn qaytarır
             }
-            // Output only Talysh sentences, each on a new line if you want paragraph form, or joined.
-            // For separate lines in the pre-wrap container:
-            return outputLines.join(' '); 
+            // Cümlələri boşluqla birləşdirərək vahid mətn bloku yaradır
+            return outputSentences.join(' '); 
         };
 
         document.addEventListener('DOMContentLoaded', function () {
             var generator = new TalyshCuratedText();
             var wordContainer = document.getElementById("word-container-id");
-            var generateButton = document.querySelector(".generate-button"); // Assuming you still have this button for subsequent generations
+            var generateButton = document.querySelector(".generate-button");
 
             function displayGeneratedText() {
-                // Ensure generator is available (it should be due to scope)
                 if (generator && wordContainer) {
-                    wordContainer.innerHTML = generator.generate();
+                    // generate funksiyası indi vahid cümlələr sətiri qaytarır
+                    wordContainer.textContent = generator.generate(); 
                 } else {
-                    console.error("Generator or wordContainer not initialized properly.");
+                    console.error("Generator və ya wordContainer düzgün başladılmayıb.");
                 }
             }
             
-            // Call it once on page load
+            // Səhifə yükləndikdə bir dəfə çağırılır
             displayGeneratedText(); 
 
-            // Event listener for the button for subsequent generations
-            if (generateButton) { // Check if button exists, in case you decide to remove it later
+            // Düymə üçün klik hadisəsi dinləyicisi
+            if (generateButton) { 
                 generateButton.addEventListener("click", displayGeneratedText);
             }
 
-            // Event listener for Enter key press
+            // Enter düyməsi üçün hadisə dinləyicisi
             document.body.addEventListener("keypress", function (event) {
                 if (event.key === 'Enter' || event.keyCode === 13) {
-                    // Prevent default action only if it's not an input field that needs Enter key
+                    // Əgər aktiv element Enter düyməsini tələb edən bir giriş sahəsi deyilsə, standart hərəkətin qarşısını alır
                     if (document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
                         event.preventDefault();
                         displayGeneratedText();
@@ -298,5 +320,6 @@
             });
         });
     </script>
+
 </body>
 </html>
