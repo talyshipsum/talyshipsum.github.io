@@ -269,22 +269,35 @@
         document.addEventListener('DOMContentLoaded', function () {
             var generator = new TalyshCuratedText();
             var wordContainer = document.getElementById("word-container-id");
-            var generateButton = document.querySelector(".generate-button");
+            var generateButton = document.querySelector(".generate-button"); // Assuming you still have this button for subsequent generations
 
             function displayGeneratedText() {
-                wordContainer.innerHTML = generator.generate();
+                // Ensure generator is available (it should be due to scope)
+                if (generator && wordContainer) {
+                    wordContainer.innerHTML = generator.generate();
+                } else {
+                    console.error("Generator or wordContainer not initialized properly.");
+                }
             }
             
-            generateButton.addEventListener("click", displayGeneratedText);
+            // Call it once on page load
+            displayGeneratedText(); 
 
+            // Event listener for the button for subsequent generations
+            if (generateButton) { // Check if button exists, in case you decide to remove it later
+                generateButton.addEventListener("click", displayGeneratedText);
+            }
+
+            // Event listener for Enter key press
             document.body.addEventListener("keypress", function (event) {
                 if (event.key === 'Enter' || event.keyCode === 13) {
-                    event.preventDefault();
-                    displayGeneratedText();
+                    // Prevent default action only if it's not an input field that needs Enter key
+                    if (document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+                        event.preventDefault();
+                        displayGeneratedText();
+                    }
                 }
             });
-            // Optionally display initial text
-            // displayGeneratedText(); 
         });
     </script>
 </body>
