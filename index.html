@@ -5,14 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Talış Ipsum</title>
+    <title>Talış Ipsum - Curated & Shuffled</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom styles to complement Tailwind */
         body {
-            font-family: 'Inter', sans-serif; /* Using Inter font */
-            background-color: #f7fafc; /* A light gray background */
-            color: #2d3748; /* Default text color */
+            font-family: 'Inter', sans-serif;
+            background-color: #f7fafc;
+            color: #2d3748;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -20,59 +19,56 @@
             padding: 20px;
             box-sizing: border-box;
         }
-
         .main-container {
             background-color: #ffffff;
-            padding: 2rem; /* p-8 */
-            border-radius: 0.75rem; /* rounded-xl */
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             width: 100%;
-            max-width: 800px; /* Max width for the content container */
-            margin-top: 2rem; /* mt-8 */
-            position: relative; /* For positioning the button */
+            max-width: 800px;
+            margin-top: 2rem;
+            position: relative;
         }
-
+        .controls-container {
+            display: flex;
+            justify-content: flex-start; /* Align button to the left */
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
         .generate-button {
-            background-color: #4f46e5; /* indigo-600 */
+            background-color: #4f46e5;
             color: white;
             font-weight: bold;
-            padding: 0.5rem 1rem; /* py-2 px-4 */
-            border-radius: 0.5rem; /* rounded-lg */
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
             transition: background-color 0.3s ease;
             cursor: pointer;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
-            position: absolute; /* Positioning */
-            top: 1rem;   /* p-4 equivalent */
-            left: 1rem;  /* p-4 equivalent */
-            z-index: 10; /* Ensure button is above other content if overlap occurs */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
-
         .generate-button:hover {
-            background-color: #4338ca; /* indigo-700 */
+            background-color: #4338ca;
         }
-
         .generate-button:focus {
             outline: none;
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.5); /* focus:ring-indigo-500 */
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.5);
         }
-
         .word-container {
-            color: #4a5568; /* gray-700 */
-            font-size: 1.125rem; /* text-lg */
-            line-height: 1.75; /* leading-relaxed */
-            margin-top: 3rem; /* Adjusted margin-top to provide space since title is gone, button is 1rem from top + its height */
-            padding: 1rem; /* p-4 */
-            background-color: #f9fafb; /* gray-50 */
-            border-radius: 0.5rem; /* rounded-lg */
-            min-height: 200px; /* Give some initial height */
-            border: 1px solid #e5e7eb; /* border-gray-200 */
+            color: #374151;
+            font-size: 1.125rem;
+            line-height: 1.75;
+            margin-top: 1rem;
+            padding: 1.5rem;
+            background-color: #f9fafb;
+            border-radius: 0.5rem;
+            min-height: 250px;
+            border: 1px solid #e5e7eb;
+            white-space: pre-wrap;
         }
-
         .footer {
-            margin-top: 2rem; /* mt-8 */
+            margin-top: 2rem;
             text-align: center;
-            font-size: 0.875rem; /* text-sm */
-            color: #6b7280; /* gray-500 */
+            font-size: 0.875rem;
+            color: #6b7280;
         }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -82,237 +78,213 @@
 
 <body>
     <div class="main-container">
-        <button class="generate-button" autofocus>Generate</button>
+        <div class="controls-container">
+            <button class="generate-button" autofocus>Generate</button>
+        </div>
         <div class="word-container" id="word-container-id">
-            </div>
+        </div>
+    </div>
+    <div class="footer">
+        Talış Ipsum Generator. Word shuffling may result in nonsensical sentences. Review critical text.
     </div>
 
     <script>
-        // TalyshIpsum Object Definition
-        var TalyshIpsum = function () {};
+        var TalyshCuratedText = function () {};
 
-        // Average words per sentence
-        TalyshIpsum.WORDS_PER_SENTENCE_AVG = 18.0;
-
-        // Standard deviation for sentence length
-        TalyshIpsum.WORDS_PER_SENTENCE_STD = 6.0;
-
-        // Fixed number of additional words to generate after "Lorem ipsum"
-        TalyshIpsum.FIXED_ADDITIONAL_WORDS = 100;
-
-        // !!! IMPORTANT !!!
-        // REPLACE THE WORDS BELOW WITH AUTHENTIC TALYSH WORDS
-        TalyshIpsum.TALYSH_WORDS = [
-            'çımı', 'dıl', 'əkə', 'bırə', 'zua', 'kay', 'non', 'kilə', 'şedə', 'əve',
-            'merd', 'jin', 'kinə', 'rü', 'asmon', 'zəmin', 'oftab', 'moş', 'av', 'vel',
-            'pise', 'xəş', 'ardedə', 'şiyedə', 'vindedə', 'xandedə', 'mandə', 'peşə', 'zəng', 'səfa',
-            'ku', 'çəş', 'dim', 'dast', 'ling', 'sər', 'qıləy', 'dı', 'se', 'çar',
-            'panc', 'şeş', 'haft', 'həşt', 'nov', 'da', 'bə', 'de', 'əz', 'tı',
-            'əv', 'əmə', 'şımə', 'əvon', 'kitob', 'qələm', 'dəftər', 'şagird', 'ostad', 'məktəb', 'rüjdə', 'şəv', 'imruz', 'sıbə', 'çıvon', 'kardedə',
-            // Add many more Talysh words here
+        TalyshCuratedText.CURATED_SENTENCES_DATA = [
+            { talysh: "Çımı xosə vətən, konəy ki bəy barzə bandon iyən nığılə vişon hestin, çımı dıli ilhom doydə iyən az bəy vey məhəbbət bardedəm.", originalEnglish: "Our beautiful homeland, which has high mountains and wonderful forests, gives inspiration to my heart, and I feel great love for it." },
+            { talysh: "Səvodinə inson be həmə vaxt lozime, bərə ki elm həyotədə ıştə yolə vırəş heste iyən məktəb həminə elmi sə vırəye.", originalEnglish: "It is always necessary to be an educated person, because science has its good place in life, and school is the place for that science." },
+            { talysh: "Beməxə Rəbədəli ıştə das-dimi şüştəni iyən çəy kitob-dəftər hejo notəmiz mandedə, çıko ki, odəmi zəhlə bardə.", originalEnglish: "The untidy Rabadali doesn't wash his hands and face, and his book-notebook always remains unclean, which is why he is annoying." },
+            { talysh: "Tovistonədə həvo vey istin iyən qəşəng bedə, əmma zımıstonədə bərk vo varəşe iyən həmmə vırə sıpi bedə.", originalEnglish: "In summer, the weather is very hot and beautiful, but in winter, heavy snow falls and everywhere becomes white." },
+            { talysh: "Kıtı, konəy ki yolə heyvone, kəyədə miyov kardedə iyən əğılon deş vey pidən holə kardedən.", originalEnglish: "The cat, which is a good animal, meows at home, and children love to play with it very much." },
+            { talysh: "Hərki çok bıhando iyən ıştə dərsxənon omuto, əv həyotədə yolə nəticəon əldə bıkarde bəzne, bərə ki zınəy ğüvvəye.", originalEnglish: "Whoever reads well and learns their lessons can achieve good results in life, because knowledge is power." },
+            { talysh: "Çəmə məktəbi muəllimon bəmə həm tolışə zıvon, həmənən co elmon omutedən, ki əmə savodlı bıbəmon.", originalEnglish: "Our school teachers teach us both the Talysh language and other sciences, so that we become literate." },
+            { talysh: "Pamədor iyən piyoz, konanki bostonoədə perosnedən, mətbəxədə ləzzətinə xorəkon hozı kardeədə istifadə bedən.", originalEnglish: "Tomatoes and onions, which grow in gardens, are used in the kitchen to prepare delicious meals." },
+            { talysh: "Əvəsorədə, vaxto ki təbiət oşedə iyən vılon pərəs bedən, həmmə vırə bənə nığıli bedə iyən insoni dıl şoy bedə.", originalEnglish: "In spring, when nature awakens and flowers bloom, everywhere becomes like a fairy tale and a person's heart becomes joyful." },
+            { talysh: "Xocəli faciəsi, konədə ki vey zolımonə deşmenon çanədə jenon iyən hırdənon kıştışone, çəmə xəlği yadədə hejo bəmandə.", originalEnglish: "The Khojaly tragedy, where very cruel enemies killed many women and children, will always remain in the memory of our people." },
+            { talysh: "Bobo, konəy ki vey sinnıne iyən ağılmande, ıştə nəvəonku co məsləhəton doydə iyən bəvon həyoti yol nişo doydə.", originalEnglish: "The grandfather, who is very old and wise, gives different advice to his grandchildren and shows them the way of life." },
+            { talysh: "Asp, konəy ki vəfodorə heyvone, bə daştonədə surətinə davəstedə iyən çəy soybiro sadoğətinə xidmət kardedə.", originalEnglish: "The horse, which is a loyal animal, runs fast in the fields and serves its owner faithfully." },
+            { talysh: "Lankoni ğələ, konəy ki tolışə məholi ğədimə abidəyonədə qıləyje, Azərboyconi zənginə tarixiku xəbə doydə.", originalEnglish: "The Lankaran fortress, which is one of the ancient monuments of the Talysh region, tells about the rich history of Azerbaijan." },
+            { talysh: "Sanbuə, konəy ki vişə pərəndəye iyən bə daron dimədə jiyedə, bə təbiəti faydə doydə, bərə ki əv zərərverəcə həşəraton hardedə.", originalEnglish: "The woodpecker, which is a forest bird and lives on trees, benefits nature because it eats harmful insects." },
+            { talysh: "Kandımuz, konəy ki vey zəhmətkəşə həşərate, vılonku şirə qırdə kardedə iyən bə insonon faydəlinə anqivin doydə.", originalEnglish: "The bee, which is a very hardworking insect, collects nectar from flowers and gives beneficial honey to people." },
+            { talysh: "Honi ovi, konəy ki bə bandonədə sərin iyən pakə vırəku beşedə, şır-şır sədo kardedə iyən insoni təşnəti sindedə.", originalEnglish: "Spring water, which comes out from cool and clean places in the mountains, murmurs and quenches a person's thirst." },
+            { talysh: "Nun, konəy ki Xıdo bərəkəte, həmişə bəmə süfron səpe bəpe bıbo, iyən əmə bəy hurmət karde bəpe, bərə ki əv həyoti əsase.", originalEnglish: "Bread, which is God's blessing, should always be on our tables, and we must respect it because it is the basis of life." },
+            { talysh: "Hər şoqird bəpe ıştə dərson çok bıhono iyən ıştə muəllimi sıxanon quş bıdo, ta ki əv gələcəxədə ıştə vətəniro faydəlinə inson bıbo.", originalEnglish: "Every student must read their lessons well and listen to their teacher's words, so that in the future they can become a useful person for their homeland." },
+            { talysh: "Əgər tı ıştə yolə duston pidəş iyən bəvon hurmət kardedəş, əvonən bətı həmonə curə cavob bədon iyən şımə dustiyəti həmişə bərk bəbe.", originalEnglish: "If you love your good friends and respect them, they will respond to you in the same way, and your friendship will always be strong." },
+            { talysh: "Tolışə zıvon, konəy ki çəmə moə zıvone, vey ğədimə iyən zəngine, bəroən əmə bəpe bəy qoruyəmon iyən bə omə nəslon rosneymon.", originalEnglish: "The Talysh language, which is our mother tongue, is very ancient and rich, therefore we must protect it and pass it on to future generations." }
         ];
 
-        // !!! IMPORTANT !!!
-        // REPLACE THE WORDS BELOW WITH AUTHENTIC AZERBAIJANI WORDS
-        TalyshIpsum.AZERBAIJANI_WORDS = [
-            'salam', 'yaxşı', 'çox', 'sağ ol', 'məktəb', 'ev', 'kitab', 'dost', 'ata',
-            'ana', 'qardaş', 'bacı', 'su', 'çörək', 'alma', 'maşın', /* 'getmək', 'gəlmək', 'danışmaq', */
-            /* 'oxumaq', 'yazmaq', */ 'gözəl', 'böyük', 'kiçik', 'isti', 'soyuq', 'ağ', 'qara', 'qırmızı',
-            'yaşıl', 'mavi', 'gün', 'gecə', 'ulduz', 'ay', 'dünya', 'həyat', 'sevgi', 'iş',
-            'pul', 'vətən', 'bayraq', 'millət', 'azadlıq', 'sülh', 'gələcək', 'ümid', 'arzu', 'xəyal',
-            'bazar', 'can', 
-            'boy', 'lazım', 'qəşəng', 'balışd', 'səpe', 'surx', 'siyoli', 'talış', 'zıvon', 'xıdo'
-            // Add many more Azerbaijani words here
+        TalyshCuratedText.RANDOM_TALYS_WORDS = [
+            'yolə', 'xosə', 'şirinə', 'barzə', 'təzə', 'ğədimə', 'sərinə', 'pakə', 'sıpi', 'siyə', // adjectives
+            'vey', 'hejo', 'lap', 'çox', // simple adverbs/intensifiers (çox is Azeri but common in mixed speech)
+            'bəli', 'hay', 'əlbəttə', // interjections / affirmations
+            'çəmə', 'bənə', 'əslində' // other useful simple words (əslində also common from Azeri)
         ];
 
+        TalyshCuratedText.prototype.getRandomElement = function(arr) {
+            if (!arr || arr.length === 0) return null;
+            return arr[Math.floor(Math.random() * arr.length)];
+        };
 
         /**
-         * Generates a string of mixed Talysh-Azerbaijani text, starting with "Lorem ipsum".
-         * A fixed number of additional words (TalyshIpsum.FIXED_ADDITIONAL_WORDS) will be generated.
-         * Aims for a 40% Azerbaijani / 60% Talysh word mix for the additional words.
-         * @returns {string} The generated text.
+         * Shuffles the order of words in a sentence string.
+         * @param {string} sentenceStr - The sentence string.
+         * @returns {string} The sentence with words shuffled.
          */
-        TalyshIpsum.prototype.generate = function () {
-            var words, i, position, word, current, sentences, sentence_length, sentence;
-            var num_additional_words = TalyshIpsum.FIXED_ADDITIONAL_WORDS;
+        TalyshCuratedText.prototype.shuffleSentenceWords = function(sentenceStr) {
+            let words = sentenceStr.split(' ');
+            let punctuation = "";
+            
+            // Try to preserve ending punctuation
+            if (words.length > 0) {
+                const lastWord = words[words.length - 1];
+                const match = lastWord.match(/([,.!?]+)$/);
+                if (match) {
+                    punctuation = match[1];
+                    words[words.length - 1] = lastWord.substring(0, lastWord.length - punctuation.length);
+                }
+            }
 
-            if (TalyshIpsum.TALYSH_WORDS.length === 0 && TalyshIpsum.AZERBAIJANI_WORDS.length === 0 && num_additional_words > 0) {
-                return "Lorem ipsum. (Cannot generate more words: Both Talysh and Azerbaijani word lists in the script are empty. Please add words.)";
+            // Fisher-Yates shuffle
+            for (let i = words.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [words[i], words[j]] = [words[j], words[i]];
             }
             
-            words = ["Lorem", "ipsum"]; // Always start with "Lorem ipsum"
+            let shuffledSentence = words.join(' ');
+            if (punctuation && words.length > 0) {
+                 // Find the new last word to attach punctuation, might not be logical.
+                 // For simplicity, just append. A better way would be complex.
+                 shuffledSentence += punctuation;
+            } else if (words.length > 0 && !/[.!?]$/.test(shuffledSentence.trim())) {
+                 // If no original punctuation was preserved but sentence is not empty add a default.
+                 shuffledSentence = shuffledSentence.trim() + ".";
+            }
+            return shuffledSentence;
+        };
 
-            // Generate the additional random words
-            for (i = 0; i < num_additional_words; i++) {
-                // Updated: 40% chance for Azerbaijani word, 60% for Talysh
-                let isAzerbaijani = Math.random() < 0.4; 
-                let selectedWord = null;
-                let chosenList = null;
 
-                if (isAzerbaijani && TalyshIpsum.AZERBAIJANI_WORDS.length > 0) {
-                    chosenList = TalyshIpsum.AZERBAIJANI_WORDS;
-                } else if (!isAzerbaijani && TalyshIpsum.TALYSH_WORDS.length > 0) {
-                    chosenList = TalyshIpsum.TALYSH_WORDS;
-                } else if (TalyshIpsum.AZERBAIJANI_WORDS.length > 0) { // Fallback if intended list is empty
-                    chosenList = TalyshIpsum.AZERBAIJANI_WORDS;
-                } else if (TalyshIpsum.TALYSH_WORDS.length > 0) { // Fallback if intended list is empty
-                    chosenList = TalyshIpsum.TALYSH_WORDS;
-                } else {
-                    break; // Both lists are effectively empty for further generation
+        TalyshCuratedText.prototype.addRandomWordToSentence = function(sentenceStr) {
+            if (Math.random() < 0.3) { // 30% chance to add an extra word
+                const randomWord = this.getRandomElement(TalyshCuratedText.RANDOM_TALYS_WORDS);
+                if (!randomWord) return sentenceStr;
+
+                let wordsInSentence = sentenceStr.split(' ');
+                const originalFirstWord = wordsInSentence.length > 0 ? wordsInSentence[0] : "";
+                let punctuation = "";
+
+                // Preserve and remove end punctuation from last word for now
+                if (wordsInSentence.length > 0) {
+                    const lastWord = wordsInSentence[wordsInSentence.length - 1];
+                    const match = lastWord.match(/([,.!?]+)$/);
+                    if (match) {
+                        punctuation = match[1];
+                        wordsInSentence[wordsInSentence.length - 1] = lastWord.substring(0, lastWord.length - punctuation.length);
+                         if(wordsInSentence[wordsInSentence.length - 1] === "") wordsInSentence.pop(); // if word was only punctuation
+                    }
                 }
                 
-                position = Math.floor(Math.random() * chosenList.length);
-                selectedWord = chosenList[position];
+                const placementRoll = Math.random();
 
-                // Avoid repeating the exact same word as the one just added, if possible and list has more than one word
-                if (words.length > 2 && words[words.length - 1] === selectedWord && chosenList.length > 1) {
-                    let newPosition = Math.floor(Math.random() * chosenList.length);
-                    // Try one more time to get a different word
-                    if (chosenList[newPosition] !== selectedWord) {
-                        selectedWord = chosenList[newPosition];
+                if (placementRoll < 0.5 && wordsInSentence.length > 0) { // Add to beginning
+                    wordsInSentence.unshift(randomWord);
+                } else if (wordsInSentence.length > 2) { // Add before the second to last word (more natural for adverbs)
+                    wordsInSentence.splice(wordsInSentence.length - 1, 0, randomWord);
+                } else if (wordsInSentence.length > 0) { // Fallback: add before the last word
+                     wordsInSentence.splice(wordsInSentence.length, 0, randomWord); // effectively appends before potential punctuation
+                } else { // Sentence was empty or just punctuation
+                    wordsInSentence.push(randomWord);
+                }
+                
+                let finalSentence = wordsInSentence.join(' ');
+                if (punctuation) {
+                    finalSentence += punctuation;
+                } else if (!/[.!?]$/.test(finalSentence.trim()) && finalSentence.trim().length > 0) {
+                    finalSentence = finalSentence.trim() + ".";
+                }
+                return finalSentence;
+            }
+            return sentenceStr;
+        };
+
+        TalyshCuratedText.prototype.generate = function () {
+            const NUM_SENTENCES_TO_DISPLAY = 8;
+
+            if (TalyshCuratedText.CURATED_SENTENCES_DATA.length === 0) {
+                return "No curated sentences available.";
+            }
+
+            let outputLines = [];
+            // Create a copy of the curated sentences data to shuffle for selection
+            let availableSentencesData = [...TalyshCuratedText.CURATED_SENTENCES_DATA];
+
+            // Shuffle the available sentences data
+            for (let i = availableSentencesData.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [availableSentencesData[i], availableSentencesData[j]] = [availableSentencesData[j], availableSentencesData[i]];
+            }
+            
+            // Select the first 8 (or fewer if not enough available)
+            const selectedSentenceObjects = availableSentencesData.slice(0, Math.min(NUM_SENTENCES_TO_DISPLAY, availableSentencesData.length));
+            
+            // Now, shuffle the order of these 8 selected sentences for display
+            for (let i = selectedSentenceObjects.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [selectedSentenceObjects[i], selectedSentenceObjects[j]] = [selectedSentenceObjects[j], selectedSentenceObjects[i]];
+            }
+
+
+            selectedSentenceObjects.forEach((sentenceObj) => {
+                let talyshSentence = sentenceObj.talysh;
+
+                // 40% chance to shuffle words within the sentence itself
+                if (Math.random() < 0.4) {
+                    talyshSentence = this.shuffleSentenceWords(talyshSentence);
+                    // Add a note for the user if shuffling happened, good for debugging/awareness
+                    // talyshSentence += " (shuffled)"; 
+                }
+
+                // Optionally add an extra random Talysh word (happens after potential internal shuffle)
+                talyshSentence = this.addRandomWordToSentence(talyshSentence); 
+
+                // Ensure first letter is capitalized and ends with punctuation
+                if (talyshSentence && talyshSentence.trim().length > 0) {
+                    talyshSentence = talyshSentence.trim();
+                    talyshSentence = talyshSentence.charAt(0).toUpperCase() + talyshSentence.slice(1);
+                    if (!/[.!?]$/.test(talyshSentence)) {
+                        talyshSentence += ".";
                     }
                 }
-                words.push(selectedWord);
+                outputLines.push(talyshSentence);
+            });
+
+            if (outputLines.length === 0) {
+                return "Could not select any sentences.";
             }
-
-            sentences = [];
-            current = 0;
-            let total_words_to_process = words.length; 
-
-            while (total_words_to_process > 0) {
-                sentence_length = this.getRandomSentenceLength();
-                if (total_words_to_process - sentence_length < 4 && total_words_to_process - sentence_length > 0) {
-                    sentence_length = total_words_to_process;
-                }
-                sentence_length = Math.min(sentence_length, total_words_to_process);
-
-                sentence = [];
-                for (let k = current; k < (current + sentence_length); k++) { 
-                    if(words[k]) { 
-                       sentence.push(words[k]);
-                    }
-                }
-
-                if (sentence.length > 0) {
-                    sentence = this.punctuate(sentence);
-                    sentences.push(sentence.join(' '));
-                }
-
-                total_words_to_process -= sentence_length;
-                current += sentence_length;
-            }
-            return sentences.join(' ');
+            // Output only Talysh sentences, each on a new line if you want paragraph form, or joined.
+            // For separate lines in the pre-wrap container:
+            return outputLines.join(' '); 
         };
 
-        /**
-         * Adds punctuation to a sentence.
-         * Capitalizes the first word and adds a random punctuation mark ('.', '?', '!', '?!') at the end.
-         * Randomly adds commas.
-         * @param {string[]} sentence - An array of words.
-         * @returns {string[]} The sentence array with punctuation.
-         */
-        TalyshIpsum.prototype.punctuate = function (sentence) { 
-            var word_length, num_commas, i, position;
-            // Updated: Added '?!" to the list of possible end punctuations
-            var endPunctuation = ['.', '?', '!', '?!']; 
-
-            word_length = sentence.length;
-            if (word_length === 0) return sentence;
-
-            // Add a random end punctuation to the last word
-            sentence[word_length - 1] += endPunctuation[Math.floor(Math.random() * endPunctuation.length)];
-
-            // Capitalize the first letter of the first word
-            if (sentence[0] && typeof sentence[0] === 'string') {
-                 sentence[0] = sentence[0].charAt(0).toUpperCase() + sentence[0].slice(1);
-            }
-
-            // If the sentence is very short, don't add commas
-            if (word_length < 4) { 
-                return sentence;
-            }
-
-            num_commas = this.getRandomCommaCount(word_length);
-
-            for (i = 0; i <= num_commas; i++) { 
-                position = Math.round((i + 1) * word_length / (num_commas + 2)); 
-
-                if (position < (word_length - 1) && position > 0) {
-                    // Check if the word already ends with a comma or other sentence-ending punctuation
-                    const lastChar = sentence[position].slice(-1);
-                    const lastTwoChars = sentence[position].slice(-2); // For checking '?!'
-                    if (lastChar !== ',' && lastChar !== '.' && lastChar !== '?' && lastChar !== '!' && lastTwoChars !== '?!') {
-                         sentence[position] += ',';
-                    }
-                }
-            }
-            return sentence;
-        };
-
-        /**
-         * Gets a random number of commas.
-         * @param {number} word_length - The number of words in the sentence.
-         * @returns {number} The number of commas.
-         */
-        TalyshIpsum.prototype.getRandomCommaCount = function (word_length) {
-            var base = 6; 
-            var average = Math.log(word_length) / Math.log(base);
-            var standard_deviation = average / base; 
-            return Math.max(0, Math.round(this.gaussMS(average, standard_deviation)));
-        };
-
-        /**
-         * Gets a random sentence length.
-         * @returns {number} A random sentence length.
-         */
-        TalyshIpsum.prototype.getRandomSentenceLength = function () {
-            let length = Math.round(
-                this.gaussMS(
-                    TalyshIpsum.WORDS_PER_SENTENCE_AVG,
-                    TalyshIpsum.WORDS_PER_SENTENCE_STD
-                )
-            );
-            return Math.max(3, length); 
-        };
-
-        /**
-         * Gaussian distribution approximation.
-         * @returns {number} Random number.
-         */
-        TalyshIpsum.prototype.gauss = function () {
-            return (Math.random() * 2 - 1) + (Math.random() * 2 - 1) + (Math.random() * 2 - 1);
-        };
-
-        /**
-         * Gaussian distribution with mean and std deviation.
-         * @param {number} mean - The mean.
-         * @param {number} standard_deviation - The standard deviation.
-         * @returns {number} Random number.
-         */
-        TalyshIpsum.prototype.gaussMS = function (mean, standard_deviation) {
-            return Math.round(this.gauss() * standard_deviation + mean);
-        };
-
-        // --- Event Listeners and Initialization ---
-        document.addEventListener('DOMContentLoaded', function() {
-            var generator = new TalyshIpsum();
+        document.addEventListener('DOMContentLoaded', function () {
+            var generator = new TalyshCuratedText();
             var wordContainer = document.getElementById("word-container-id");
             var generateButton = document.querySelector(".generate-button");
 
-            function generateText() {
-                wordContainer.innerHTML = generator.generate(); 
+            function displayGeneratedText() {
+                wordContainer.innerHTML = generator.generate();
             }
-
-            generateText(); // Initial generation
-
-            generateButton.addEventListener("click", generateText);
+            
+            generateButton.addEventListener("click", displayGeneratedText);
 
             document.body.addEventListener("keypress", function (event) {
                 if (event.key === 'Enter' || event.keyCode === 13) {
-                    event.preventDefault(); 
-                    generateText();
+                    event.preventDefault();
+                    displayGeneratedText();
                 }
             });
+            // Optionally display initial text
+            // displayGeneratedText(); 
         });
     </script>
 </body>
