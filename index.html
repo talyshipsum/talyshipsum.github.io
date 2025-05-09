@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Talysh-Azerbaijani Ipsum</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles to complement Tailwind */
+        body {
+            font-family: 'Inter', sans-serif; /* Using Inter font */
+            background-color: #f7fafc; /* A light gray background */
+            color: #2d3748; /* Default text color */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .main-container {
+            background-color: #ffffff;
+            padding: 2rem; /* p-8 */
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+            width: 100%;
+            max-width: 800px; /* Max width for the content container */
+            margin-top: 2rem; /* mt-8 */
+            position: relative; /* For positioning the button */
+        }
+
+        .generate-button {
+            background-color: #4f46e5; /* indigo-600 */
+            color: white;
+            font-weight: bold;
+            padding: 0.5rem 1rem; /* py-2 px-4 */
+            border-radius: 0.5rem; /* rounded-lg */
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            position: absolute; /* Positioning */
+            top: 1rem;   /* p-4 equivalent */
+            left: 1rem;  /* p-4 equivalent */
+            z-index: 10; /* Ensure button is above other content if overlap occurs */
+        }
+
+        .generate-button:hover {
+            background-color: #4338ca; /* indigo-700 */
+        }
+
+        .generate-button:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.5); /* focus:ring-indigo-500 */
+        }
+
+        .word-container {
+            color: #4a5568; /* gray-700 */
+            font-size: 1.125rem; /* text-lg */
+            line-height: 1.75; /* leading-relaxed */
+            margin-top: 3rem; /* Adjusted margin-top to provide space since title is gone, button is 1rem from top + its height */
+            padding: 1rem; /* p-4 */
+            background-color: #f9fafb; /* gray-50 */
+            border-radius: 0.5rem; /* rounded-lg */
+            min-height: 200px; /* Give some initial height */
+            border: 1px solid #e5e7eb; /* border-gray-200 */
+        }
+
+        .footer {
+            margin-top: 2rem; /* mt-8 */
+            text-align: center;
+            font-size: 0.875rem; /* text-sm */
+            color: #6b7280; /* gray-500 */
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main-container">
+        <button class="generate-button" autofocus>Generate</button>
+        <div class="word-container" id="word-container-id">
+            </div>
+    </div>
+
+    <footer class="footer">
+        <p>Press Enter or click the button to generate new text.</p>
+        <p>Remember to populate the Talysh and Azerbaijani word lists in the script!</p>
+    </footer>
+
+    <script>
+        // TalyshIpsum Object Definition
+        var TalyshIpsum = function () {};
+
+        // Average words per sentence
+        TalyshIpsum.WORDS_PER_SENTENCE_AVG = 18.0;
+
+        // Standard deviation for sentence length
+        TalyshIpsum.WORDS_PER_SENTENCE_STD = 6.0;
+
+        // Fixed number of additional words to generate after "Lorem ipsum"
+        TalyshIpsum.FIXED_ADDITIONAL_WORDS = 100;
+
+        // !!! IMPORTANT !!!
+        // REPLACE THE WORDS BELOW WITH AUTHENTIC TALYSH WORDS
+        TalyshIpsum.TALYSH_WORDS = [
+            'çımı', 'dıl', 'əkə', 'bırə', 'zua', 'kay', 'non', 'kilə', 'şedə', 'əve',
+            'merd', 'jin', 'kinə', 'rü', 'asmon', 'zəmin', 'oftab', 'moş', 'av', 'vel',
+            'pise', 'xəş', 'ardedə', 'şiyedə', 'vindedə', 'xandedə', 'mandə', 'peşə', 'zəng', 'səfa',
+            'ku', 'çəş', 'dim', 'dast', 'ling', 'sər', 'qıləy', 'dı', 'se', 'çar',
+            'panc', 'şeş', 'haft', 'həşt', 'nov', 'da', 'bə', 'de', 'əz', 'tı',
+            'əv', 'əmə', 'şımə', 'əvon', 'kitob', 'qələm', 'dəftər', 'şagird', 'ostad', 'məktəb'
+            // Add many more Talysh words here
+        ];
+
+        // !!! IMPORTANT !!!
+        // REPLACE THE WORDS BELOW WITH AUTHENTIC AZERBAIJANI WORDS
+        TalyshIpsum.AZERBAIJANI_WORDS = [
+            'salam', 'necəsən', 'yaxşı', 'çox', 'sağ ol', 'məktəb', 'ev', 'kitab', 'dost', 'ata',
+            'ana', 'qardaş', 'bacı', 'su', 'çörək', 'alma', 'maşın', 'getmək', 'gəlmək', 'danışmaq',
+            'oxumaq', 'yazmaq', 'gözəl', 'böyük', 'kiçik', 'isti', 'soyuq', 'ağ', 'qara', 'qırmızı',
+            'yaşıl', 'mavi', 'gün', 'gecə', 'ulduz', 'ay', 'dünya', 'həyat', 'sevgi', 'iş',
+            'pul', 'vətən', 'bayraq', 'millət', 'azadlıq', 'sülh', 'gələcək', 'ümid', 'arzu', 'xəyal',
+            'bazar', 'can', 'rüjdə', 'şəv', 'imruz', 'sıbə', 'çıvon', 'kardedə',
+            'boy', 'lazım', 'qəşəng', 'balışd', 'səpe', 'surx', 'siyoli', 'talış', 'zıvon', 'xıdo'
+            // Add many more Azerbaijani words here
+        ];
+
+
+        /**
+         * Generates a string of mixed Talysh-Azerbaijani text, starting with "Lorem ipsum".
+         * A fixed number of additional words (TalyshIpsum.FIXED_ADDITIONAL_WORDS) will be generated.
+         * Aims for a 40% Azerbaijani / 60% Talysh word mix for the additional words.
+         * @returns {string} The generated text.
+         */
+        TalyshIpsum.prototype.generate = function () {
+            var words, i, position, word, current, sentences, sentence_length, sentence;
+            var num_additional_words = TalyshIpsum.FIXED_ADDITIONAL_WORDS;
+
+            if (TalyshIpsum.TALYSH_WORDS.length === 0 && TalyshIpsum.AZERBAIJANI_WORDS.length === 0 && num_additional_words > 0) {
+                return "Lorem ipsum. (Cannot generate more words: Both Talysh and Azerbaijani word lists in the script are empty. Please add words.)";
+            }
+            
+            words = ["Lorem", "ipsum"]; // Always start with "Lorem ipsum"
+
+            // Generate the additional random words
+            for (i = 0; i < num_additional_words; i++) {
+                // Updated: 40% chance for Azerbaijani word, 60% for Talysh
+                let isAzerbaijani = Math.random() < 0.4; 
+                let selectedWord = null;
+                let chosenList = null;
+
+                if (isAzerbaijani && TalyshIpsum.AZERBAIJANI_WORDS.length > 0) {
+                    chosenList = TalyshIpsum.AZERBAIJANI_WORDS;
+                } else if (!isAzerbaijani && TalyshIpsum.TALYSH_WORDS.length > 0) {
+                    chosenList = TalyshIpsum.TALYSH_WORDS;
+                } else if (TalyshIpsum.AZERBAIJANI_WORDS.length > 0) { // Fallback if intended list is empty
+                    chosenList = TalyshIpsum.AZERBAIJANI_WORDS;
+                } else if (TalyshIpsum.TALYSH_WORDS.length > 0) { // Fallback if intended list is empty
+                    chosenList = TalyshIpsum.TALYSH_WORDS;
+                } else {
+                    break; // Both lists are effectively empty for further generation
+                }
+                
+                position = Math.floor(Math.random() * chosenList.length);
+                selectedWord = chosenList[position];
+
+                // Avoid repeating the exact same word as the one just added, if possible and list has more than one word
+                if (words.length > 2 && words[words.length - 1] === selectedWord && chosenList.length > 1) {
+                    let newPosition = Math.floor(Math.random() * chosenList.length);
+                    // Try one more time to get a different word
+                    if (chosenList[newPosition] !== selectedWord) {
+                        selectedWord = chosenList[newPosition];
+                    }
+                }
+                words.push(selectedWord);
+            }
+
+            sentences = [];
+            current = 0;
+            let total_words_to_process = words.length; 
+
+            while (total_words_to_process > 0) {
+                sentence_length = this.getRandomSentenceLength();
+                if (total_words_to_process - sentence_length < 4 && total_words_to_process - sentence_length > 0) {
+                    sentence_length = total_words_to_process;
+                }
+                sentence_length = Math.min(sentence_length, total_words_to_process);
+
+                sentence = [];
+                for (let k = current; k < (current + sentence_length); k++) { 
+                    if(words[k]) { 
+                       sentence.push(words[k]);
+                    }
+                }
+
+                if (sentence.length > 0) {
+                    sentence = this.punctuate(sentence);
+                    sentences.push(sentence.join(' '));
+                }
+
+                total_words_to_process -= sentence_length;
+                current += sentence_length;
+            }
+            return sentences.join(' ');
+        };
+
+        /**
+         * Adds punctuation to a sentence.
+         * Capitalizes the first word and adds a random punctuation mark ('.', '?', '!', '?!') at the end.
+         * Randomly adds commas.
+         * @param {string[]} sentence - An array of words.
+         * @returns {string[]} The sentence array with punctuation.
+         */
+        TalyshIpsum.prototype.punctuate = function (sentence) { 
+            var word_length, num_commas, i, position;
+            // Updated: Added '?!" to the list of possible end punctuations
+            var endPunctuation = ['.', '?', '!', '?!']; 
+
+            word_length = sentence.length;
+            if (word_length === 0) return sentence;
+
+            // Add a random end punctuation to the last word
+            sentence[word_length - 1] += endPunctuation[Math.floor(Math.random() * endPunctuation.length)];
+
+            // Capitalize the first letter of the first word
+            if (sentence[0] && typeof sentence[0] === 'string') {
+                 sentence[0] = sentence[0].charAt(0).toUpperCase() + sentence[0].slice(1);
+            }
+
+            // If the sentence is very short, don't add commas
+            if (word_length < 4) { 
+                return sentence;
+            }
+
+            num_commas = this.getRandomCommaCount(word_length);
+
+            for (i = 0; i <= num_commas; i++) { 
+                position = Math.round((i + 1) * word_length / (num_commas + 2)); 
+
+                if (position < (word_length - 1) && position > 0) {
+                    // Check if the word already ends with a comma or other sentence-ending punctuation
+                    const lastChar = sentence[position].slice(-1);
+                    const lastTwoChars = sentence[position].slice(-2); // For checking '?!'
+                    if (lastChar !== ',' && lastChar !== '.' && lastChar !== '?' && lastChar !== '!' && lastTwoChars !== '?!') {
+                         sentence[position] += ',';
+                    }
+                }
+            }
+            return sentence;
+        };
+
+        /**
+         * Gets a random number of commas.
+         * @param {number} word_length - The number of words in the sentence.
+         * @returns {number} The number of commas.
+         */
+        TalyshIpsum.prototype.getRandomCommaCount = function (word_length) {
+            var base = 6; 
+            var average = Math.log(word_length) / Math.log(base);
+            var standard_deviation = average / base; 
+            return Math.max(0, Math.round(this.gaussMS(average, standard_deviation)));
+        };
+
+        /**
+         * Gets a random sentence length.
+         * @returns {number} A random sentence length.
+         */
+        TalyshIpsum.prototype.getRandomSentenceLength = function () {
+            let length = Math.round(
+                this.gaussMS(
+                    TalyshIpsum.WORDS_PER_SENTENCE_AVG,
+                    TalyshIpsum.WORDS_PER_SENTENCE_STD
+                )
+            );
+            return Math.max(3, length); 
+        };
+
+        /**
+         * Gaussian distribution approximation.
+         * @returns {number} Random number.
+         */
+        TalyshIpsum.prototype.gauss = function () {
+            return (Math.random() * 2 - 1) + (Math.random() * 2 - 1) + (Math.random() * 2 - 1);
+        };
+
+        /**
+         * Gaussian distribution with mean and std deviation.
+         * @param {number} mean - The mean.
+         * @param {number} standard_deviation - The standard deviation.
+         * @returns {number} Random number.
+         */
+        TalyshIpsum.prototype.gaussMS = function (mean, standard_deviation) {
+            return Math.round(this.gauss() * standard_deviation + mean);
+        };
+
+        // --- Event Listeners and Initialization ---
+        document.addEventListener('DOMContentLoaded', function() {
+            var generator = new TalyshIpsum();
+            var wordContainer = document.getElementById("word-container-id");
+            var generateButton = document.querySelector(".generate-button");
+
+            function generateText() {
+                wordContainer.innerHTML = generator.generate(); 
+            }
+
+            generateText(); // Initial generation
+
+            generateButton.addEventListener("click", generateText);
+
+            document.body.addEventListener("keypress", function (event) {
+                if (event.key === 'Enter' || event.keyCode === 13) {
+                    event.preventDefault(); 
+                    generateText();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
